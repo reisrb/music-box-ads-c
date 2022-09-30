@@ -1,9 +1,9 @@
 import React from 'react';
-
+import Musicas from './pages/Musicas';
 function App() {
   return (
     <>
-      <h2>Olá</h2>
+      <Musicas />
     </>
   );
 }
