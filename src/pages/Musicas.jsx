@@ -1,7 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import api from "../api";
+import Menu from "../components/Menu";
+import ItemMusica from "../components/ItemMusica";
+
 function Musicas() {
-  
+
   const [listaMusicas, setListaMusicas] = useState([]);
 
   useEffect(() => {
@@ -14,17 +17,36 @@ function Musicas() {
     })
   }, [])
 
-  return(
+  return (
     <>
-      <h2>Lista de músicas</h2>
-      {
-        listaMusicas.map(musicaAtual => (
-          <div key={musicaAtual.id}>
-            <h2>Nome: {musicaAtual.nome}</h2>
-            <h2>Artista: {musicaAtual.artista}</h2>
-          </div>
-        ))
-      }
+      <Menu />
+
+      <div className="container">
+        <div className="filter">
+          <button className="btn">Adicionar</button>
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="music-boxes">
+
+          {
+            listaMusicas.map(musicaAtual => (
+              // <React.Fragment key={musicaAtual.id}>
+                <ItemMusica
+                  musica={musicaAtual.nome}
+                  artista={musicaAtual.artista}
+                  ano={musicaAtual.ano}
+                  categoria={musicaAtual.genero}
+
+                  key={musicaAtual.id}
+                />
+              // </React.Fragment>
+            ))
+          }
+
+        </div>
+      </div>
     </>
   );
 }
