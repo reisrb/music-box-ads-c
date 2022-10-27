@@ -38,7 +38,8 @@ function Musicas() {
                   artista={musicaAtual.artista}
                   ano={musicaAtual.ano}
                   categoria={musicaAtual.genero}
-
+                  capa={musicaAtual.imagem}
+                  id={musicaAtual.id}
                   key={musicaAtual.id}
                 />
               // </React.Fragment>
