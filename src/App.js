@@ -1,5 +1,6 @@
 import React from 'react';
-import Musicas from './pages/Musicas';
+import Router from './router';
+import Menu from "./components/Menu";
 
 import './assets/css/style.css';
 import './assets/css/reset.css';
@@ -7,7 +8,8 @@ import './assets/css/reset.css';
 function App() {
   return (
     <>
-      <Musicas />
+      <Menu />
+      <Router />
     </>
   );
 }
