@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import editIcon from '../assets/imagens/edit-icon.png';
-import deleteIcon from '../assets/imagens/delete-icon.png';
-import capaPadrao from '../assets/imagens/capa.png';
+import editIcon from "../assets/imagens/edit-icon.png";
+import deleteIcon from "../assets/imagens/delete-icon.png";
+import capaPadrao from "../assets/imagens/capa.png";
 
-import api from '../api';
+import api from "../api";
 
 function ItemMusica(props) {
   const [editavel, setEditavel] = useState(false);
@@ -15,8 +15,8 @@ function ItemMusica(props) {
   const [imagemInput, setImagemInput] = useState(props.capa);
 
   const estilo = {
-    backgroundImage: `url(${props.capa ? props.capa :  capaPadrao})`
-  }
+    backgroundImage: `url(${props.capa ? props.capa : capaPadrao})`
+  };
 
   function editar() {
     const musicaAtualizada = {
@@ -25,14 +25,17 @@ function ItemMusica(props) {
       genero: categoriaInput,
       ano: anoInput,
       imagem: imagemInput
-    }
+    };
 
-    api.put(`/${props.id}`, musicaAtualizada).then(res => {
-      alert("Musica atualizada com sucesso!");
-      setEditavel(false);
-    }).catch(erro => {
-      alert("Deu erro, se vira!");
-    })
+    api
+      .put(`/${props.id}`, musicaAtualizada)
+      .then((res) => {
+        alert("Musica atualizada com sucesso!");
+        setEditavel(false);
+      })
+      .catch((erro) => {
+        alert("Deu erro, se vira!");
+      });
   }
 
   return (
@@ -40,56 +43,80 @@ function ItemMusica(props) {
       <div className="card-music" style={estilo}>
         <div className="icons">
           <img src={editIcon} alt="" onClick={() => setEditavel(!editavel)} />
-          <img src={deleteIcon} alt="" />
+
+          <img
+            src={deleteIcon}
+            alt=""
+      onClick={() => props.funcaoDeletar(props.id)}
+          />
         </div>
         <div className="info-music">
           <p>
             <strong className="card-title">música: </strong>
-            <input 
-            className={editavel ? "input-music-enable" : "input-music-disabled"} 
-            disabled={!editavel}
-            type="text" defaultValue={nomeInput} 
-            onChange={(e) => setNomeInput(e.target.value)} />
+            <input
+              className={
+                editavel ? "input-music-enable" : "input-music-disabled"
+              }
+              disabled={!editavel}
+              type="text"
+              defaultValue={nomeInput}
+              onChange={(e) => setNomeInput(e.target.value)}
+            />
           </p>
           <p>
             <strong className="card-title">artista: </strong>
-            <input 
-            className={editavel ? "input-music-enable" : "input-music-disabled"} 
-            disabled={!editavel}
-            type="text" 
-            defaultValue={artistaInput} 
-            onChange={(e) => setArtistaInput(e.target.value)} />
+            <input
+              className={
+                editavel ? "input-music-enable" : "input-music-disabled"
+              }
+              disabled={!editavel}
+              type="text"
+              defaultValue={artistaInput}
+              onChange={(e) => setArtistaInput(e.target.value)}
+            />
           </p>
           <p>
             <strong className="card-title">categoria: </strong>
-            <input 
-            className={editavel ? "input-music-enable" : "input-music-disabled"} 
-            disabled={!editavel}
-            type="text" 
-            defaultValue={categoriaInput} 
-            onChange={(e) => setCategoriaInput(e.target.value)} />
+            <input
+              className={
+                editavel ? "input-music-enable" : "input-music-disabled"
+              }
+              disabled={!editavel}
+              type="text"
+              defaultValue={categoriaInput}
+              onChange={(e) => setCategoriaInput(e.target.value)}
+            />
           </p>
           <p>
             <strong className="card-title">ano: </strong>
-            <input 
-            className={editavel ? "input-music-enable" : "input-music-disabled"} 
-            disabled={!editavel}
-            type="text" 
-            defaultValue={anoInput} 
-            onChange={(e) => setAnoInput(e.target.value)} />
+            <input
+              className={
+                editavel ? "input-music-enable" : "input-music-disabled"
+              }
+              disabled={!editavel}
+              type="text"
+              defaultValue={anoInput}
+              onChange={(e) => setAnoInput(e.target.value)}
+            />
           </p>
           <p>
             <strong className="card-title">imagem: </strong>
-            <input 
-            className={editavel ? "input-music-enable" : "input-music-disabled"} 
-            disabled={!editavel}
-            type="text" 
-            defaultValue={imagemInput} 
-            onChange={(e) => setImagemInput(e.target.value)} />
+            <input
+              className={
+                editavel ? "input-music-enable" : "input-music-disabled"
+              }
+              disabled={!editavel}
+              type="text"
+              defaultValue={imagemInput}
+              onChange={(e) => setImagemInput(e.target.value)}
+            />
           </p>
-          <button 
-          className={editavel ? "btn-salvar-enable" : "btn-salvar-disabled"}
-          onClick={editar}>Salvar</button>
+          <button
+            className={editavel ? "btn-salvar-enable" : "btn-salvar-disabled"}
+            onClick={editar}
+          >
+            Salvar
+          </button>
         </div>
       </div>
     </>
